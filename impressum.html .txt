@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Impressum | UGC by Lena</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">UGC by Lena</div>
+        <ul><li><a href="index.html">Home</a></li></ul>
+    </nav>
+    <section>
+        <h1>Impressum</h1>
+        <p>Lena Edenhauser <br> Lenzing 101 <br> 5760 Saalfelden <br>Österreich</p>
+        <p>E-Mail: l.edenhauser@icloud.com</p>
+    </section>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UGC by Lena | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">UGC by Lena</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#about">Über mich</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <h1>UGC by Lena</h1>
+            <p>Authentischer Content für deine Brand</p>
+            <a href="#portfolio" class="btn">Portfolio ansehen</a>
+        </div>
+    </header>
+
+    <section id="portfolio">
+        <h2>Mein Portfolio</h2>
+        <div class="video-grid">
+            <div class="video-box">
+                <video autoplay muted loop playsinline preload="auto">
+                    <source src="media/video1.mp4" type="video/mp4">
+                </video>
+                <p>Beauty & Skincare</p>
+            </div>
+            <div class="video-box">
+                <video autoplay muted loop playsinline preload="auto">
+                    <source src="media/video2.mp4" type="video/mp4">
+                </video>
+                <p>Lifestyle Unboxing</p>
+            </div>
+            <div class="video-box">
+                <video autoplay muted loop playsinline preload="auto">
+                    <source src="media/video3.mp4" type="video/mp4">
+                </video>
+                <p>Food & Beverage</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>Über mich</h2>
+        <div class="about-container">
+            <p>Ich bin Lena, eine leidenschaftliche UGC Creatorin aus Österreich. Ich erstelle Videos, die nicht nach Werbung aussehen, sondern nach echten Empfehlungen.</p>
+        </div>
+    </section>
+
+    <footer id="kontakt">
+        <h2>Kontakt</h2>
+        <p>E-Mail: l.edenhauser@icloud.com</p>
+        <div class="footer-links">
+            <a href="impressum.html">Impressum</a>
+            <a href="datenschutz.html">Datenschutz</a>
+        </div>
+        <p class="copy">&copy; 2026 UGC by Lena</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
