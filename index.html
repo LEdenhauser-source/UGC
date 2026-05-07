@@ -1,72 +1,902 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UGC by Lena | Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UGC by Lena – Beauty · Travel · Wellness</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <style>
+
+    /* Grundeinstellungen */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: #f5f0ed;
+      color: #2a1a1f;
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      background-color: #f5f0ed;
+      border-bottom: 1px solid #c9a8b2;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: #5c1a2e;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    nav ul a {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #7a4f5a;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover {
+      color: #5c1a2e;
+    }
+
+    /* Sprachumschalter Button */
+    .lang-btn {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background-color: #5c1a2e;
+      color: #f5f0ed;
+      border: none;
+      padding: 6px 14px;
+      cursor: pointer;
+      font-family: 'Lato', sans-serif;
+      transition: background-color 0.2s;
+    }
+
+    .lang-btn:hover {
+      background-color: #3d0f1e;
+    }
+
+    /* Hero */
+    header {
+      position: relative;
+      width: 100%;
+      height: 90vh;
+      overflow: hidden;
+    }
+
+    .hero-bild {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: brightness(0.55);
+    }
+
+    .hero-verlauf {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 65%;
+      background: linear-gradient(to top, rgba(92,26,46,0.80), transparent);
+    }
+
+    .hero-text {
+      position: absolute;
+      bottom: 60px;
+      left: 40px;
+      max-width: 620px;
+    }
+
+    .hero-tagline {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #e8c4cc;
+      margin-bottom: 12px;
+    }
+
+    .hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4.5rem;
+      font-weight: 400;
+      color: #ffffff;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .hero-text h1 em {
+      font-style: italic;
+      color: #e8c4cc;
+    }
+
+    .hero-untertitel {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.78);
+      margin-bottom: 28px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 32px;
+      background-color: #5c1a2e;
+      color: #ffffff;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      font-family: 'Lato', sans-serif;
+      transition: background-color 0.25s;
+    }
+
+    .btn:hover {
+      background-color: #3d0f1e;
+    }
+
+    /* Section Grundlayout */
+    section {
+      padding: 80px 40px;
+    }
+
+    .section-alt {
+      background-color: #ede4e8;
+    }
+
+    .section-titel {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 400;
+      margin-bottom: 16px;
+      color: #5c1a2e;
+    }
+
+    .section-nummer {
+      font-style: italic;
+      color: #c9a8b2;
+      font-size: 0.85rem;
+      display: block;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .section-intro {
+      font-size: 0.95rem;
+      color: #7a4f5a;
+      max-width: 640px;
+      margin-bottom: 48px;
+      line-height: 1.8;
+    }
+
+    /* Portfolio Videos */
+    .video-raster {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+    }
+
+    .video-karte {
+      background-color: #f5f0ed;
+      box-shadow: 0 2px 12px rgba(92,26,46,0.08);
+      transition: transform 0.3s;
+    }
+
+    .video-karte:hover {
+      transform: translateY(-6px);
+    }
+
+    .video-karte video {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      object-fit: cover;
+      background-color: #2a1a1f;
+      display: block;
+    }
+
+    .video-beschriftung {
+      padding: 16px 18px 20px;
+    }
+
+    .video-beschriftung strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 400;
+      margin-bottom: 4px;
+      color: #2a1a1f;
+    }
+
+    .video-beschriftung span {
+      font-size: 0.8rem;
+      color: #7a4f5a;
+    }
+
+    .pill {
+      display: inline-block;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background-color: #5c1a2e;
+      color: #e8c4cc;
+      padding: 4px 12px;
+      margin-bottom: 10px;
+    }
+
+    /* Leistungen */
+    .karten-raster {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+    }
+
+    .karte {
+      background-color: #f5f0ed;
+      padding: 28px 24px;
+      border-top: 2px solid #5c1a2e;
+    }
+
+    .karte h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin-bottom: 10px;
+      color: #5c1a2e;
+    }
+
+    .karte p {
+      font-size: 0.88rem;
+      color: #7a4f5a;
+      line-height: 1.75;
+    }
+
+    /* Ablauf */
+    .ablauf-raster {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+    }
+
+    .ablauf-karte {
+      background-color: #f5f0ed;
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    .ablauf-nummer {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-style: italic;
+      color: #c9a8b2;
+      margin-bottom: 12px;
+    }
+
+    .ablauf-karte h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+      color: #5c1a2e;
+    }
+
+    .ablauf-karte p {
+      font-size: 0.87rem;
+      color: #7a4f5a;
+      line-height: 1.75;
+    }
+
+    /* Über mich */
+    #ueber-mich {
+      display: flex;
+      align-items: flex-start;
+      gap: 64px;
+    }
+
+    .about-bild {
+      width: 360px;
+      flex-shrink: 0;
+    }
+
+    .about-bild img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+    }
+
+    .about-inhalt {
+      flex: 1;
+    }
+
+    .about-name {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #c9a8b2;
+      margin-bottom: 20px;
+    }
+
+    .about-zitat {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      line-height: 1.6;
+      color: #5c1a2e;
+      margin-bottom: 24px;
+      border-left: 2px solid #c9a8b2;
+      padding-left: 16px;
+    }
+
+    .about-text {
+      font-size: 0.92rem;
+      color: #7a4f5a;
+      line-height: 1.85;
+      margin-bottom: 16px;
+    }
+
+    /* Warum ich - Liste */
+    .warum-liste {
+      list-style: none;
+      margin-top: 24px;
+      margin-bottom: 24px;
+    }
+
+    .warum-liste li {
+      font-size: 0.9rem;
+      color: #2a1a1f;
+      line-height: 1.75;
+      padding: 12px 0;
+      border-bottom: 1px solid #c9a8b2;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .warum-liste li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: #5c1a2e;
+    }
+
+    .warum-liste li strong {
+      color: #5c1a2e;
+      font-weight: 400;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .tags span {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid #c9a8b2;
+      color: #7a4f5a;
+      padding: 5px 14px;
+    }
+
+    /* Kontaktformular */
+    .kontakt-formular {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 580px;
+    }
+
+    .kontakt-formular input,
+    .kontakt-formular textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #c9a8b2;
+      background-color: #ffffff;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      color: #2a1a1f;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .kontakt-formular input:focus,
+    .kontakt-formular textarea:focus {
+      border-color: #5c1a2e;
+    }
+
+    .kontakt-formular textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #3d0f1e;
+      color: rgba(255,255,255,0.5);
+      padding: 56px 40px;
+      text-align: center;
+    }
+
+    .footer-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      font-style: italic;
+      color: #e8c4cc;
+      margin-bottom: 20px;
+    }
+
+    .footer-email {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: #ffffff;
+      border-bottom: 1px solid #5c1a2e;
+      padding-bottom: 2px;
+      display: inline-block;
+      margin-bottom: 36px;
+      transition: color 0.2s;
+    }
+
+    .footer-email:hover {
+      color: #e8c4cc;
+    }
+
+    .footer-linie {
+      width: 40px;
+      height: 1px;
+      background-color: rgba(255,255,255,0.15);
+      margin: 0 auto 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      margin-bottom: 20px;
+    }
+
+    .footer-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: #e8c4cc;
+    }
+
+    .footer-copy {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.2);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+
+      nav {
+        padding: 0 20px;
+      }
+
+      nav ul {
+        gap: 12px;
+      }
+
+      nav ul a {
+        font-size: 0.7rem;
+      }
+
+      .hero-text {
+        left: 20px;
+        bottom: 40px;
+      }
+
+      .hero-text h1 {
+        font-size: 2.8rem;
+      }
+
+      section {
+        padding: 60px 20px;
+      }
+
+      .video-raster,
+      .karten-raster,
+      .ablauf-raster {
+        grid-template-columns: 1fr;
+      }
+
+      #ueber-mich {
+        flex-direction: column;
+      }
+
+      .about-bild {
+        width: 100%;
+      }
+
+    }
+
+  </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">UGC by Lena</div>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#about">Über mich</a></li>
-            <li><a href="#kontakt">Kontakt</a></li>
-        </ul>
-    </nav>
 
-    <header id="home" class="hero">
-        <div class="hero-content">
-            <h1>UGC by Lena</h1>
-            <p>Authentischer Content für deine Brand</p>
-            <a href="#portfolio" class="btn">Portfolio ansehen</a>
+  <!-- Navigation -->
+  <nav>
+    <a class="nav-logo" href="#">UGC by Lena</a>
+    <ul>
+      <li><a href="#portfolio" data-de="Portfolio" data-en="Portfolio">Portfolio</a></li>
+      <li><a href="#leistungen" data-de="Leistungen" data-en="Services">Leistungen</a></li>
+      <li><a href="#ablauf" data-de="Ablauf" data-en="Process">Ablauf</a></li>
+      <li><a href="#ueber-mich" data-de="&Uuml;ber mich" data-en="About me">&Uuml;ber mich</a></li>
+      <li><a href="#kontakt" data-de="Kontakt" data-en="Contact">Kontakt</a></li>
+      <li><button class="lang-btn" onclick="spracheWechseln()">EN</button></li>
+    </ul>
+  </nav>
+
+
+  <!-- Hero -->
+  <header id="home">
+    <img
+      class="hero-bild"
+      src="https://placehold.co/1400x800/3d0f1e/e8c4cc?text=UGC+by+Lena"
+      alt="Hero-Bild – UGC by Lena"
+    />
+    <div class="hero-verlauf"></div>
+
+    <div class="hero-text">
+      <p class="hero-tagline" data-de="Luxury UGC &middot; Beauty &middot; Travel &middot; Wellness" data-en="Luxury UGC &middot; Beauty &middot; Travel &middot; Wellness">
+        Luxury UGC &middot; Beauty &middot; Travel &middot; Wellness
+      </p>
+      <h1>
+        <span data-de="Authentischer Content" data-en="Authentic Content">Authentischer Content</span><br />
+        <em><span data-de="mit eleganter &Auml;sthetik." data-en="with elegant aesthetics.">mit eleganter &Auml;sthetik.</span></em>
+      </h1>
+      <p class="hero-untertitel"
+         data-de="Ich erstelle hochwertiges User Generated Content, der Vertrauen schafft und Ihre Marke perfekt in Szene setzt."
+         data-en="I create high-quality user generated content that builds trust and showcases your brand perfectly.">
+        Ich erstelle hochwertiges User Generated Content, der Vertrauen schafft und Ihre Marke perfekt in Szene setzt.
+      </p>
+      <a class="btn" href="#portfolio"
+         data-de="Portfolio ansehen" data-en="View Portfolio">Portfolio ansehen</a>
+    </div>
+  </header>
+
+
+  <!-- Portfolio -->
+  <section id="portfolio" class="section-alt">
+    <span class="section-nummer">01 &mdash;</span>
+    <h2 class="section-titel" data-de="Portfolio" data-en="Portfolio">Portfolio</h2>
+    <p class="section-intro"
+       data-de="Eine Auswahl meiner Video-Arbeiten &ndash; authentisch, hochwertig und f&uuml;r Social Media optimiert."
+       data-en="A selection of my video work &ndash; authentic, high quality and optimised for social media.">
+      Eine Auswahl meiner Video-Arbeiten &ndash; authentisch, hochwertig und f&uuml;r Social Media optimiert.
+    </p>
+
+    <div class="video-raster">
+
+      <div class="video-karte">
+        <video autoplay muted loop playsinline preload="auto">
+          <source src="media/video1.mp4" type="video/mp4" />
+        </video>
+        <div class="video-beschriftung">
+          <span class="pill">Beauty</span>
+          <strong data-de="Beauty &amp; Skincare" data-en="Beauty &amp; Skincare">Beauty &amp; Skincare</strong>
+          <span data-de="Close-up Produktaufnahme mit weichem Licht" data-en="Close-up product shot with soft light">
+            Close-up Produktaufnahme mit weichem Licht
+          </span>
         </div>
-    </header>
+      </div>
 
-    <section id="portfolio">
-        <h2>Mein Portfolio</h2>
-        <div class="video-grid">
-            <div class="video-box">
-                <video autoplay muted loop playsinline preload="auto">
-                    <source src="media/video1.mp4" type="video/mp4">
-                </video>
-                <p>Beauty & Skincare</p>
-            </div>
-            <div class="video-box">
-                <video autoplay muted loop playsinline preload="auto">
-                    <source src="media/video2.mp4" type="video/mp4">
-                </video>
-                <p>Lifestyle Unboxing</p>
-            </div>
-            <div class="video-box">
-                <video autoplay muted loop playsinline preload="auto">
-                    <source src="media/video3.mp4" type="video/mp4">
-                </video>
-                <p>Food & Beverage</p>
-            </div>
+      <div class="video-karte">
+        <video autoplay muted loop playsinline preload="auto">
+          <source src="media/video2.mp4" type="video/mp4" />
+        </video>
+        <div class="video-beschriftung">
+          <span class="pill">Travel</span>
+          <strong data-de="Lifestyle Unboxing" data-en="Lifestyle Unboxing">Lifestyle Unboxing</strong>
+          <span data-de="Hotel &amp; Destination Content im Hochformat" data-en="Hotel &amp; destination content in portrait format">
+            Hotel &amp; Destination Content im Hochformat
+          </span>
         </div>
-    </section>
+      </div>
 
-    <section id="about">
-        <h2>Über mich</h2>
-        <div class="about-container">
-            <p>Ich bin Lena, eine leidenschaftliche UGC Creatorin aus Österreich. Ich erstelle Videos, die nicht nach Werbung aussehen, sondern nach echten Empfehlungen.</p>
+      <div class="video-karte">
+        <video autoplay muted loop playsinline preload="auto">
+          <source src="media/video3.mp4" type="video/mp4" />
+        </video>
+        <div class="video-beschriftung">
+          <span class="pill">Wellness</span>
+          <strong data-de="Food &amp; Beverage" data-en="Food &amp; Beverage">Food &amp; Beverage</strong>
+          <span data-de="Spa- &amp; Selfcare-Szene mit Slow-Motion" data-en="Spa &amp; selfcare scene with slow motion">
+            Spa- &amp; Selfcare-Szene mit Slow-Motion
+          </span>
         </div>
-    </section>
+      </div>
 
-    <footer id="kontakt">
-        <h2>Kontakt</h2>
-        <p>E-Mail: l.edenhauser@icloud.com</p>
-        <div class="footer-links">
-            <a href="impressum.html">Impressum</a>
-            <a href="datenschutz.html">Datenschutz</a>
-        </div>
-        <p class="copy">&copy; 2026 UGC by Lena</p>
-    </footer>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
+
+  <!-- Leistungen -->
+  <section id="leistungen">
+    <span class="section-nummer">02 &mdash;</span>
+    <h2 class="section-titel" data-de="Leistungen" data-en="Services">Leistungen</h2>
+    <p class="section-intro"
+       data-de="Ma&szlig;geschneiderter Content f&uuml;r Social Media, Ads und Websites &ndash; perfekt abgestimmt auf Ihre Marke."
+       data-en="Tailor-made content for social media, ads and websites &ndash; perfectly matched to your brand.">
+      Ma&szlig;geschneiderter Content f&uuml;r Social Media, Ads und Websites &ndash; perfekt abgestimmt auf Ihre Marke.
+    </p>
+
+    <div class="karten-raster">
+
+      <div class="karte">
+        <h3 data-de="Beauty UGC" data-en="Beauty UGC">Beauty UGC</h3>
+        <p data-de="Skincare, Makeup, Texturaufnahmen, Soft-Aesthetic Produktvideos und authentische Reviews."
+           data-en="Skincare, makeup, texture shots, soft-aesthetic product videos and authentic reviews.">
+          Skincare, Makeup, Texturaufnahmen, Soft-Aesthetic Produktvideos und authentische Reviews.
+        </p>
+      </div>
+
+      <div class="karte">
+        <h3 data-de="Travel Content" data-en="Travel Content">Travel Content</h3>
+        <p data-de="Hotel- und Resort-Content, Room Tours, POV-Reels und Destination-Highlights."
+           data-en="Hotel and resort content, room tours, POV reels and destination highlights.">
+          Hotel- und Resort-Content, Room Tours, POV-Reels und Destination-Highlights.
+        </p>
+      </div>
+
+      <div class="karte">
+        <h3 data-de="Wellness &amp; Lifestyle" data-en="Wellness &amp; Lifestyle">Wellness &amp; Lifestyle</h3>
+        <p data-de="Spa-Momente, Selfcare-Routinen, Slow-Living-Clips und entspannte Mood-Aufnahmen."
+           data-en="Spa moments, selfcare routines, slow-living clips and relaxed mood shots.">
+          Spa-Momente, Selfcare-Routinen, Slow-Living-Clips und entspannte Mood-Aufnahmen.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- Ablauf -->
+  <section id="ablauf" class="section-alt">
+    <span class="section-nummer">03 &mdash;</span>
+    <h2 class="section-titel" data-de="Ablauf" data-en="Process">Ablauf</h2>
+    <p class="section-intro"
+       data-de="Von der ersten Anfrage bis zur fertigen Datei &ndash; einfach, klar und schnell."
+       data-en="From the first enquiry to the finished file &ndash; simple, clear and fast.">
+      Von der ersten Anfrage bis zur fertigen Datei &ndash; einfach, klar und schnell.
+    </p>
+
+    <div class="ablauf-raster">
+
+      <div class="ablauf-karte">
+        <div class="ablauf-nummer">1.</div>
+        <h3 data-de="Anfrage" data-en="Enquiry">Anfrage</h3>
+        <p data-de="Sie erz&auml;hlen mir von Ihrer Marke, Ihren Produkten und Ihren Zielen."
+           data-en="You tell me about your brand, your products and your goals.">
+          Sie erz&auml;hlen mir von Ihrer Marke, Ihren Produkten und Ihren Zielen.
+        </p>
+      </div>
+
+      <div class="ablauf-karte">
+        <div class="ablauf-nummer">2.</div>
+        <h3 data-de="Konzept" data-en="Concept">Konzept</h3>
+        <p data-de="Ich entwickle eine Content-Idee im gew&uuml;nschten Look &amp; Feel."
+           data-en="I develop a content idea in the desired look &amp; feel.">
+          Ich entwickle eine Content-Idee im gew&uuml;nschten Look &amp; Feel.
+        </p>
+      </div>
+
+      <div class="ablauf-karte">
+        <div class="ablauf-nummer">3.</div>
+        <h3 data-de="Produktion" data-en="Production">Produktion</h3>
+        <p data-de="Umsetzung, Bearbeitung und &Uuml;bergabe der fertigen Dateien &ndash; bereit f&uuml;r Social Media."
+           data-en="Filming, editing and delivery of finished files &ndash; ready for social media.">
+          Umsetzung, Bearbeitung und &Uuml;bergabe der fertigen Dateien &ndash; bereit f&uuml;r Social Media.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- Über mich -->
+  <section id="ueber-mich">
+
+    <div class="about-bild">
+      <img
+        src="https://placehold.co/480x600/ede4e8/5c1a2e?text=Lena"
+        alt="Foto von Lena"
+      />
+    </div>
+
+    <div class="about-inhalt">
+      <span class="section-nummer">04 &mdash;</span>
+      <h2 class="section-titel" data-de="&Uuml;ber mich" data-en="About me">&Uuml;ber mich</h2>
+
+      <p class="about-name">Lena Maria Edenhauser &nbsp;|&nbsp; 20 Jahre &nbsp;|&nbsp; UGC-Strategin &amp; Creatorin</p>
+
+      <p class="about-zitat"
+         data-de="Ich bin Lena &ndash; Creatorin aus &Ouml;sterreich mit einer klaren Vision f&uuml;r modernes Marketing."
+         data-en="I&rsquo;m Lena &ndash; a creator from Austria with a clear vision for modern marketing.">
+        Ich bin Lena &ndash; Creatorin aus &Ouml;sterreich mit einer klaren Vision f&uuml;r modernes Marketing.
+      </p>
+
+      <p class="about-text"
+         data-de="In einer Welt, in der klassische Werbung oft &uuml;bersehen wird, schaffe ich Inhalte, die h&auml;ngen bleiben. Mein Wissen &uuml;ber die Creator Economy habe ich mir komplett eigenst&auml;ndig erarbeitet &ndash; eine Disziplin, die sich heute in der Qualit&auml;t und Pr&auml;zision meiner Arbeit widerspiegelt."
+         data-en="In a world where traditional advertising is often ignored, I create content that sticks. I built my knowledge of the creator economy entirely on my own &ndash; a discipline that is reflected today in the quality and precision of my work.">
+        In einer Welt, in der klassische Werbung oft &uuml;bersehen wird, schaffe ich Inhalte, die h&auml;ngen bleiben. Mein Wissen &uuml;ber die Creator Economy habe ich mir komplett eigenst&auml;ndig erarbeitet &ndash; eine Disziplin, die sich heute in der Qualit&auml;t und Pr&auml;zision meiner Arbeit widerspiegelt.
+      </p>
+
+      <ul class="warum-liste">
+        <li>
+          <strong data-de="Strategische Tiefe statt 08/15:" data-en="Strategic depth, not cookie-cutter:">Strategische Tiefe statt 08/15:</strong>
+          <span data-de=" Ich produziere nicht einfach nur Videos. Ich analysiere deine Marke und entwickle individuelle Konzepte, die genau deine Zielgruppe ins Herz treffen."
+                data-en=" I don&rsquo;t just produce videos. I analyse your brand and develop individual concepts that speak directly to your target audience.">
+            Ich produziere nicht einfach nur Videos. Ich analysiere deine Marke und entwickle individuelle Konzepte, die genau deine Zielgruppe ins Herz treffen.
+          </span>
+        </li>
+        <li>
+          <strong data-de="Qualit&auml;t aus &Uuml;berzeugung:" data-en="Quality by conviction:">Qualit&auml;t aus &Uuml;berzeugung:</strong>
+          <span data-de=" Ich stehe f&uuml;r authentische Empfehlungen. Deshalb arbeite ich nur mit Brands zusammen, deren Produkte mich wirklich begeistern &ndash; ein Unterschied, den man in jedem Frame sieht."
+                data-en=" I stand for authentic recommendations. That&rsquo;s why I only work with brands whose products genuinely excite me &ndash; a difference you can see in every frame.">
+            Ich stehe f&uuml;r authentische Empfehlungen. Deshalb arbeite ich nur mit Brands zusammen, deren Produkte mich wirklich begeistern &ndash; ein Unterschied, den man in jedem Frame sieht.
+          </span>
+        </li>
+        <li>
+          <strong data-de="Wissen am Puls der Zeit:" data-en="Knowledge at the cutting edge:">Wissen am Puls der Zeit:</strong>
+          <span data-de=" Durch meine technischen Skills und mein angehendes Marketing-Studium verstehe ich die Mechanismen hinter dem Medienwandel. Ich wei&szlig;, wie man Hooks setzt, die zum Stoppen einladen."
+                data-en=" Through my technical skills and upcoming marketing degree, I understand the mechanisms behind media change. I know how to set hooks that make people stop scrolling.">
+            Durch meine technischen Skills und mein angehendes Marketing-Studium verstehe ich die Mechanismen hinter dem Medienwandel. Ich wei&szlig;, wie man Hooks setzt, die zum Stoppen einladen.
+          </span>
+        </li>
+        <li>
+          <strong data-de="Einzigartige Kreationen:" data-en="Unique creations:">Einzigartige Kreationen:</strong>
+          <span data-de=" Ich gebe mich nicht mit Kopien zufrieden. F&uuml;r mich ist jedes Projekt die Chance, etwas Neues zu erschaffen, das deine Brand von der Konkurrenz abhebt."
+                data-en=" I don&rsquo;t settle for copies. For me, every project is a chance to create something new that sets your brand apart from the competition.">
+            Ich gebe mich nicht mit Kopien zufrieden. F&uuml;r mich ist jedes Projekt die Chance, etwas Neues zu erschaffen, das deine Brand von der Konkurrenz abhebt.
+          </span>
+        </li>
+      </ul>
+
+      <div class="tags">
+        <span>Beauty</span>
+        <span>Travel</span>
+        <span>Wellness</span>
+        <span>Skincare</span>
+        <span>Lifestyle</span>
+        <span>Reels &amp; TikTok</span>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- Kontakt -->
+  <section id="kontakt" class="section-alt">
+    <span class="section-nummer">05 &mdash;</span>
+    <h2 class="section-titel" data-de="Kontakt" data-en="Contact">Kontakt</h2>
+    <p class="section-intro"
+       data-de="F&uuml;r Projektanfragen, Kooperationen oder weitere Informationen schreib mir gerne eine Nachricht."
+       data-en="For project enquiries, collaborations or further information, feel free to send me a message.">
+      F&uuml;r Projektanfragen, Kooperationen oder weitere Informationen schreib mir gerne eine Nachricht.
+    </p>
+
+    <form action="#" method="post" class="kontakt-formular">
+      <input type="text" name="name" data-placeholder-de="Name" data-placeholder-en="Name" placeholder="Name" required />
+      <input type="email" name="email" data-placeholder-de="E-Mail" data-placeholder-en="E-Mail" placeholder="E-Mail" required />
+      <textarea name="nachricht" rows="5"
+                data-placeholder-de="Deine Nachricht" data-placeholder-en="Your message"
+                placeholder="Deine Nachricht" required></textarea>
+      <button type="submit" class="btn"
+              data-de="Nachricht senden" data-en="Send message">Nachricht senden</button>
+    </form>
+  </section>
+
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-name">UGC by Lena</div>
+
+    <a class="footer-email" href="mailto:l.edenhauser@icloud.com">
+      l.edenhauser@icloud.com
+    </a>
+
+    <div class="footer-linie"></div>
+
+    <div class="footer-links">
+      <a href="impressum.html" data-de="Impressum" data-en="Imprint">Impressum</a>
+      <a href="datenschutz.html" data-de="Datenschutz" data-en="Privacy Policy">Datenschutz</a>
+    </div>
+
+    <p class="footer-copy">&copy; 2026 Lena Edenhauser. Alle Rechte vorbehalten.</p>
+  </footer>
+
+
+  <!-- Sprachwechsel JavaScript -->
+  <script>
+    // Aktuelle Sprache – startet auf Deutsch
+    var aktuellesprache = "de";
+
+    function spracheWechseln() {
+
+      // Sprache umschalten
+      if (aktuellesprache === "de") {
+        aktuellesprache = "en";
+      } else {
+        aktuellesprache = "de";
+      }
+
+      // Button-Text ändern
+      var button = document.querySelector(".lang-btn");
+      if (aktuellesprache === "en") {
+        button.textContent = "DE";
+      } else {
+        button.textContent = "EN";
+      }
+
+      // Alle Elemente mit data-de und data-en durchgehen
+      var elemente = document.querySelectorAll("[data-de]");
+
+      for (var i = 0; i < elemente.length; i++) {
+        var el = elemente[i];
+        var neuerText = el.getAttribute("data-" + aktuellesprache);
+        if (neuerText) {
+          el.innerHTML = neuerText;
+        }
+      }
+
+      // Platzhalter in Formularfeldern wechseln
+      var felder = document.querySelectorAll("[data-placeholder-de]");
+      for (var j = 0; j < felder.length; j++) {
+        var feld = felder[j];
+        feld.placeholder = feld.getAttribute("data-placeholder-" + aktuellesprache);
+      }
+
+    }
+  </script>
+
+
 </body>
 </html>
